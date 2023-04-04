@@ -99,7 +99,7 @@ const formData = {
 };
 const options = {
   'method' : 'post',
-  'payload' : JSON.stringify(formData)
+  'payload' : formData
 };
 
 const response = UrlFetchApp.fetch('https://expresstoo-jzam6yvx3q-ez.a.run.app/alliancepdf1', options);
