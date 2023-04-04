@@ -55,12 +55,12 @@ const customDateFormater = () =>{
 
  function generatePDF(entries){
    const date = customDateFormater();
-   const file = DriveApp.getFilesByName("Alliance Life Assurance Quote_v2");
+   const file = DriveApp.getFilesByName("Alliance Life Assurance Quote v3");
    entries = JSON.parse(entries);
    while(file.hasNext()){
       const f = file.next();
       const id = f.getId();
-      if(id==="1aS4USl9kjMVqhgu4-q0zMZ8OyN9UDtqk0OZUvCU9dHE"){
+      if(id==="1ODWtdb9SAd1y0x9UJrOOgcVsZfL_6KoBdNH1bKSSpPo"){
          const newFile = f.makeCopy("alliance"+date.year+"_"+date.month+"_"+date.day+"_"+date.hour+"_"+date.minute+"_"+date.second.replaceAll(".","_"),DriveApp.getFolderById("1wPRtL-bqTnyHr8KFa0aVL7ylPE5quVjq"));
          const doc = DocumentApp.openById(newFile.getId());
          const body = doc.getBody();
@@ -82,10 +82,26 @@ const customDateFormater = () =>{
          const blob = doc.getAs("application/pdf");
          const retObj = {};
          const data = Utilities.base64Encode(blob.getBytes());
-         retObj.file = data;
          retObj.fileName = newFile.getName();
+         retObj.file = getUrlOfThisPdfAl1(data,retObj.fileName);
          newFile.setTrashed(true);   
          return JSON.stringify(retObj);
       }
    }
+}
+
+
+function getUrlOfThisPdfAl1(data,name){
+   // Make a POST request with form data.
+const formData = {
+  'name': name,
+  'data': data
+};
+const options = {
+  'method' : 'post',
+  'payload' : JSON.stringify(formData)
+};
+
+const response = UrlFetchApp.fetch('https://expresstoo-jzam6yvx3q-ez.a.run.app/alliancepdf1', options);
+return response.getContentText();
 }
