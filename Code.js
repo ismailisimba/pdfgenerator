@@ -87,6 +87,7 @@ const customDateFormater = () =>{
          const data = Utilities.base64Encode(blob.getBytes());
          retObj.fileName = newFile.getName();
          retObj.file = getUrlOfThisPdfAl1(data,retObj.fileName);
+         console.log(retObj);
          newFile.setTrashed(true);   
          return JSON.stringify(retObj);
       }
