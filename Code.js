@@ -1,4 +1,5 @@
-const defobj = {"parameters":{"paraOne":"alliancepdf"},"postData":{"contents":JSON.stringify({
+const defobj = {"parameters":{"paraOne":"alliancepdf"},"postData":{"contents":JSON.stringify(
+  JSON.stringify( {
    "name": "Ismaili Amir Simba",
    "dayOfBirth": "22-02-2023",
    "policyTerm": "25 Years",
@@ -12,7 +13,9 @@ const defobj = {"parameters":{"paraOne":"alliancepdf"},"postData":{"contents":JS
    "cashback": "1,000,000",
    "cashbackStatus":"cashback",
    "planType":"greee"
- })}};
+ })
+ 
+ )}};
 
 const customDateFormater = () =>{
    Date.prototype.toDateInputValue = (function() {
