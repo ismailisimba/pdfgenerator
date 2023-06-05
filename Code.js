@@ -81,6 +81,7 @@ const customDateFormater = () =>{
          body.replaceText('{termBonus}', entries.termbonus);
          body.replaceText('{maturityVal}', entries.totalmatval);
          body.replaceText('{cashbackAmount}', entries.cashback);
+         body.replaceText('{singleCash}',entries.singlecashback)
          doc.saveAndClose();        
          const blob = doc.getAs("application/pdf");
          const retObj = {};
